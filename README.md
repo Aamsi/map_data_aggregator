@@ -1,7 +1,7 @@
 # map_data_aggregator
 Building visuals with data from https://github.com/aroussel-data/un_data_aggregator
 
-http://aamsi.pythonanywhere.com/
+https://aamsi.pythonanywhere.com/
 
 Hi.
 
