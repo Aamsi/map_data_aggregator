@@ -4,7 +4,7 @@ import folium
 # from folium.plugins import MarkerCluster
 from datetime import datetime
 
-from settings import HOST, USER, PW, PORT, DB
+from app.settings import HOST, USER, PW, PORT, DB
 
 
 class FetcherConflicts():
@@ -23,8 +23,9 @@ class FetcherConflicts():
                             fatalities > 15;
                         """
 
-    def __init__(self, year):
-        self.year = year
+    def __init__(self, year_min, year_max):
+        self.year_min = year_min
+        self.year_max = year_max
         self.engine = None
         self.df = None
         self.df = None
@@ -38,8 +39,8 @@ class FetcherConflicts():
     
     def create_df(self):
         """ Create dataframe to use on the map """
-        date_min = datetime(self.year, 1, 1, 0, 0, 0)
-        date_max = datetime(self.year + 1, 1, 1, 0, 0, 0)
+        date_min = datetime(self.year_min, 1, 1, 0, 0, 0)
+        date_max = datetime(self.year_max, 1, 1, 0, 0, 0)
         self.df = pd.read_sql_query(self.SQL_QUERY_CONFLICTS, self.engine,
                                params=(date_min, date_max))
 

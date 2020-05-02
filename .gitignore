@@ -1,3 +1,4 @@
 .env
 __pycache__/
 env/
+map_conflict.html

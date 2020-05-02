@@ -5,4 +5,4 @@ from app import app_map
 @app_map.route('/')
 @app_map.route('/index')
 def index():
-    return render_template('conflict.html')
+    return render_template('conflict.html', title='Fatalities provoked by armed conflicts from 2015 to 2020')

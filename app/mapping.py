@@ -1,7 +1,8 @@
 import folium
+import branca
 import pandas as pd
-from fetch import FetcherConflicts
-from settings import MAP_TOKEN
+from app.fetch import FetcherConflicts
+from app.settings import MAP_TOKEN
 
 class CreateMap():
     """
@@ -9,7 +10,7 @@ class CreateMap():
     """
 
     def __init__(self):
-        self.fetcher = FetcherConflicts(2010)
+        self.fetcher = FetcherConflicts(2015, 2020)
         self.m = None
         self.choropleth = None
         self.init_map()
@@ -41,22 +42,24 @@ class CreateMap():
             line_opacity=0.2,
             highlight=True,
             line_color='black',
-            legend_name='Fatalities in 2010'
+            legend_name='Total number of death from 2015 to 2020'
         ).add_to(self.m)
 
     def marker(self):
         """ Create marker for each row in dataframe"""
         for index, row in self.fetcher.df.iterrows():
 
-            popup = folium.Popup(html=f"<b>Country</b><br>{row['country']}<br>\
-<b>Event type</b><br>{row['event_type']}<br>\
-<b>Fatalities</b><br>{row['fatalities']}<br>\
-<b>Date</b><br>{row['event_date']}",
-                                max_width='200%')
+            html = f"<b>Country</b><br>{row['country']}<br><br>\
+<b>Event type</b><br>{row['event_type']}<br><br>\
+<b>Fatalities</b><br>{row['fatalities']}<br><br>\
+<b>Date</b><br>{row['event_date']}"
+
+            iframe = branca.element.IFrame(html=html, width=400, height=200)
+            popup = folium.Popup(iframe, max_width=2000)
 
             folium.CircleMarker(
                 location=(row['latitude'], row['longitude']),
-                radius=row['fatalities']/10,
+                radius=row['fatalities']/30,
                 color="#007849",
                 popup=popup,
                 fill=True,
@@ -64,7 +67,7 @@ class CreateMap():
 
     def save_map(self):
         """ Save map into html file """
-        self.m.save('/home/aamsi/Documents/data_aggreg_map/app/templates/conflict.html')
+        self.m.save('/home/aamsi/Documents/data_aggreg_map/app/templates/map_conflict.html')
 
 
 mapping = CreateMap()
