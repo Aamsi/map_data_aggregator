@@ -23,8 +23,8 @@ class CreateMap():
         self.m = folium.Map(
                 location=[48.8534, 2.3488],
                 tiles=MAP_TOKEN,
-                attr='My data attr',
                 zoom_start=3,
+                attr="<a href='https://www.mapbox.com/about/maps/'>© Mapbox</a> <a href='https://www.openstreetmap.org/copyright'>© OpenStreetMap</a>"
             )
 
     def choropleth_map(self):
