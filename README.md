@@ -8,7 +8,7 @@ Hi.
 
 The goal is to create several maps using different set of datas. 
 
-Tasks planned:
+Tasks:
 - [ ] Get conflict given a year the user can select on the map
 - [ ] Create a nav bar with all available maps
 - [ ] Display more information in the marker popup
