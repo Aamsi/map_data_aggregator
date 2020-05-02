@@ -1,9 +1,9 @@
 # map_data_aggregator
 Building visuals with data from https://github.com/aroussel-data/un_data_aggregator
 
-Hi.
+https://aamsi.pythonanywhere.com/
 
-Creating visuals to support this project: https://github.com/aroussel-data/un_data_aggregator
+Hi.
 
 
 The goal is to create several maps using different set of datas. 
