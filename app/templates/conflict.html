@@ -1,15 +1,18 @@
-<html style="height: 100%;">
+<!DOCTYPE html>
+
+<html>
     <head>
+        <link href="../static/conflict.css" type="text/css" rel="stylesheet"/>
         <title>{{ title }}</title>
     </head>
 
     <body style="background-color: darkslategrey;">
-        <div class="map" style="width: auto; border: 10px solid black; height: 80%; margin-left: 7%; margin-right: 7%; margin-top: 1%;">
+        <div class="map">
             {% include 'map_conflict.html' %}
         </div>
-        <h3 style="color: black; font-family: 'Open Sans', sans-serif; text-align: center; font-size:larger;">Fatalities provoked by armed conflicts from 2015 to 2020</h3>
+        <h3>Fatalities provoked by armed conflicts from 2015 to 2020</h3>
     </body>
-    <footer style="position: absolute; margin-bottom: 0%; margin-left: 85%; margin-top: 3%;">
+    <footer>
         {% extends 'footer.html' %}
     </footer>
 </html>
