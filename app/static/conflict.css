@@ -6,6 +6,11 @@ body {
     width: 100%;
 }
 
+.source {
+    text-align: center;
+    color: black;
+}
+
 body h3 {
     color: black;
     font-family: 'Open Sans', sans-serif;
