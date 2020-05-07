@@ -14,7 +14,7 @@ class FetcherConflicts():
 
     SQL_QUERY_CONFLICTS = """
                         SELECT 
-                            data_id, country, latitude, longitude, fatalities,
+                            data_id, country, iso3, latitude, longitude, fatalities,
                             event_date, event_type, source, notes
                         FROM 
                             conflicts
@@ -49,16 +49,17 @@ class FetcherConflicts():
 
     def create_df_choropleth(self):
         """ Create df to use on choropleth (maybe useless)"""
-        self.df_choropleth = {'country':[], 'fatal_tot': []}
+        self.df_choropleth = {'country':[], 'iso3': [], 'fatal_tot': []}
         fatal_tot = 0
 
         # Create DataFrame with total fatalities per country for choropleth
         for _, row in self.df.iterrows():
-            if row['country'] not in self.df_choropleth['country']:
+            if row['iso3'] not in self.df_choropleth['iso3']:
                 self.df_choropleth['country'].append(row['country'])
+                self.df_choropleth['iso3'].append(row['iso3'])
                 self.df_choropleth['fatal_tot'].append(row['fatalities'])
             else:
-                index = self.df_choropleth['country'].index(row['country'])
+                index = self.df_choropleth['iso3'].index(row['iso3'])
                 self.df_choropleth['fatal_tot'][index] += row['fatalities']
 
         self.df_choropleth = pd.DataFrame(data=self.df_choropleth)
@@ -72,9 +73,10 @@ class FetcherConflicts():
         self.geojson = {'type':'FeatureCollection', 'features':[]}
         for _, row in self.df_choropleth.iterrows():
             for prop in json_obj['features']:
-                if prop['properties']['country'] == row['country']:
+                if prop['id'] == row['iso3']:
                     feature = {'type': 'Feature',
-                            'properties': {'country': row['country'],
+                            'properties': {'iso3': row['iso3'],
+                                           'country': row['country'],
                                            'fatal_tot': row['fatal_tot']},
                             'geometry': {'type': prop['geometry']['type'],
                                          'coordinates': prop['geometry']['coordinates']}}
