@@ -9,7 +9,8 @@ Hi.
 The goal is to create several maps using different set of datas. 
 
 Tasks:
-- [ ] Get conflict given a year the user can select on the map
+- [x] Get conflict given a year the user can select on the map
 - [ ] Create a nav bar with all available maps
-- [ ] Display more information in the marker popup
-- [ ] Create classes and methods to get data and create maps
+- [x] Display more information in the marker popup
+- [x] Create classes and methods to get data and create maps
+- [ ] Create map showing death of migrants trying to come to Europe
